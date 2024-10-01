@@ -7,12 +7,13 @@ export default class Jatekok {
   constructor(lista, tartalomELEM) {
     this.#lista = lista;
     this.#tartalomELEM = tartalomELEM;
-    this.#tartalomELEM.empty();
+    //this.#tartalomELEM.empty();
     this.jatekokGeneral();
   }
 
   jatekokGeneral() {
     this.#lista.forEach((elem, index) => {
+      console.log(elem);
       new Jatek(elem, index, this.#tartalomELEM);
     });
   }

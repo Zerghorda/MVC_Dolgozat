@@ -2,23 +2,17 @@ import Modell from "../modell/modell.js";
 import Jatekok from "../view/jatekok.js";
 
 export default class Control {
-  #szuloElem;
-  #modell;
-  #view;
   constructor() {
-    this.#modell = new Modell();
-    this.#view = new Jatekok();
-    this.#szuloElem = $("article");
-    megjelenitis();
+    this.szuloElem = $("article");
+    this.modell = new Modell();
+    new Jatekok(this.modell.getLISTA(), this.szuloElem);
+    this.#esemeny();
   }
-  megjelenitis() {
-    this.#view.jatekokGeneral(this.#szuloElem);
-  }
-  esemeny(){
-    $(window).addEventListener("click",function () {
-        document.getElementById("gomb")
-    })
-
-    
+  #esemeny() {
+    $(window).on("kivalaszt", (event) => {
+      console.log(event.detail);
+      this.modell.removeAktELEM(event.detail);
+      new Jatekok(this.modell.getLISTA(), this.taroloElem);
+    });
   }
 }
